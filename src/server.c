@@ -1,20 +1,14 @@
-/* hello.c */
-#include <stdio.h>
-#include <math.h>
-#include <cstdlib>
+//Maksim Yemelyanovich 13
+//Implementation of interface.h function dayCount
 
-typedef struct
-{
-  int day;
-  int month;
-  int year;
-} Date;
+#include "interface.h"
+#include <math.h>
 
 int dayCount(Date dateCurrent, Date dateStart)
 {
   int result = 0, yearCount = dateCurrent.year - dateStart.year;
   result += yearCount*365 + round((double)yearCount/4.0);
-  for(int i = dateCurrent.month; i < dateCurrent.month; i++)
+  for(int i = dateStart.month; i < dateCurrent.month; i++)
   {
     switch(i)
       {
@@ -44,11 +38,4 @@ int dayCount(Date dateCurrent, Date dateStart)
   }
   result += dateCurrent.day - dateStart.day;
   return result;
-}
-
-int main (int argc, char *argv[])
-{
-  Date dateStart={1,1,1970}, dateCurrent={atoi(argv[1]), atoi(argv[2]), atoi(argv[3])};
-	printf ("%i", dayCount(dateCurrent, dateStart));
-  return 0;
 }
